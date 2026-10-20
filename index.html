@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TrialSize | 临床试验样本量与检验效能规划平台</title>
+<title>TrialSize RCT | 临床试验样本量与检验效能规划平台</title>
 <style>
 :root {
   --primary: #2563eb;
@@ -12,6 +12,7 @@
   --primary-ring: rgba(37, 99, 235, 0.2);
   --teal: #0d9488;
   --teal-light: #f0fdfa;
+  --slate-950: #020617;
   --slate-900: #0f172a;
   --slate-800: #1e293b;
   --slate-700: #334155;
@@ -53,9 +54,9 @@ header {
   z-index: 40;
 }
 .header-inner {
-  max-width: 1400px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 12px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -84,7 +85,6 @@ header {
   font-size: 16px;
   font-weight: 750;
   color: var(--slate-900);
-  letter-spacing: -0.01em;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -130,7 +130,6 @@ header {
   cursor: pointer;
   transition: all 0.15s;
   border: 1px solid transparent;
-  text-decoration: none;
   user-select: none;
 }
 .btn-secondary {
@@ -150,22 +149,122 @@ header {
   background-color: var(--primary-hover);
 }
 
-/* Container & Layout */
+/* Main Container */
 .app-container {
-  max-width: 1400px;
-  margin: 24px auto 48px;
+  max-width: 1440px;
+  margin: 20px auto 48px;
   padding: 0 24px;
-}
-.main-grid {
-  display: grid;
-  grid-template-columns: 460px minmax(0, 1fr);
-  gap: 24px;
-  align-items: start;
-}
-.param-column, .result-column {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+/* Top Full-Width Hero KPI Banner */
+.hero-banner {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e3a8a 100%);
+  border-radius: 14px;
+  padding: 22px 28px;
+  color: #ffffff;
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.25);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 36px;
+}
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 280px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  padding-right: 36px;
+}
+.hero-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-eyebrow {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #93c5fd;
+}
+.hero-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.hero-number-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 4px 0 2px;
+}
+.hero-number {
+  font-size: 54px;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+}
+.hero-unit {
+  font-size: 16px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+.hero-desc {
+  font-size: 12px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.hero-right-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.hero-stat-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: background 0.2s;
+}
+.hero-stat-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.stat-k {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+.stat-v {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+.stat-sub {
+  font-size: 10.5px;
+  color: #cbd5e1;
+}
+
+/* Symmetric 2-Column Grid with Equal Height Rows */
+.symmetric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
 }
 
 /* Unified Card System */
@@ -175,6 +274,9 @@ header {
   border-radius: 14px;
   padding: 20px 22px;
   box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: box-shadow 0.2s, border-color 0.2s;
 }
 .card:hover {
@@ -185,7 +287,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   gap: 12px;
 }
 .card-title-group {
@@ -194,19 +296,19 @@ header {
   gap: 8px;
 }
 .card-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
   background: var(--slate-100);
   color: var(--slate-700);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
 }
 .card-title {
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--slate-900);
   letter-spacing: -0.01em;
@@ -218,33 +320,32 @@ header {
   border-radius: 20px;
   background: var(--slate-100);
   color: var(--slate-600);
+  white-space: nowrap;
 }
 .card-tag-primary {
   background: var(--primary-light);
   color: var(--primary);
 }
-.card-tag-amber {
-  background: var(--amber-50);
-  color: var(--amber-600);
-  border: 1px solid var(--amber-200);
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
 }
 
 /* Form Controls */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-.form-row.dense {
-  margin-top: 14px;
+  gap: 12px;
 }
 label.control-label {
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--slate-700);
   display: flex;
@@ -252,19 +353,19 @@ label.control-label {
   justify-content: space-between;
 }
 .control-desc {
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--slate-400);
   font-weight: 400;
 }
 input[type="text"], input[type="number"], select {
   width: 100%;
-  height: 38px;
-  padding: 0 12px;
+  height: 36px;
+  padding: 0 10px;
   border: 1px solid var(--slate-300);
-  border-radius: 8px;
+  border-radius: 7px;
   background: #ffffff;
   color: var(--slate-800);
-  font-size: 13.5px;
+  font-size: 13px;
   font-family: inherit;
   outline: none;
   transition: all 0.15s;
@@ -279,31 +380,30 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   align-items: center;
 }
 .input-with-unit input {
-  padding-right: 32px;
+  padding-right: 30px;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
 }
 .input-with-unit .unit {
   position: absolute;
-  right: 12px;
-  font-size: 12px;
+  right: 10px;
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--slate-400);
   pointer-events: none;
 }
 
-/* Arm Groups Management */
+/* Arms Group Management */
 .arms-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 6px;
+  gap: 8px;
 }
 .arm-card {
   border: 1px solid var(--slate-200);
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--slate-50);
-  padding: 10px 12px;
+  padding: 8px 10px;
   transition: border-color 0.15s;
 }
 .arm-card:hover {
@@ -312,13 +412,13 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 .arm-top {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 .arm-badge {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
-  padding: 3px 7px;
-  border-radius: 6px;
+  padding: 2px 6px;
+  border-radius: 5px;
   background: var(--slate-200);
   color: var(--slate-700);
   white-space: nowrap;
@@ -333,9 +433,9 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   border: none;
   border-bottom: 1px dashed var(--slate-300);
   border-radius: 0;
-  height: 28px;
+  height: 26px;
   padding: 0 4px;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--slate-800);
   outline: none;
@@ -354,12 +454,12 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   padding: 0 6px;
 }
 .arm-rate-input {
-  width: 52px;
-  height: 28px;
+  width: 48px;
+  height: 26px;
   border: none;
   text-align: right;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12.5px;
   padding: 0;
   outline: none;
 }
@@ -374,7 +474,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   color: var(--slate-400);
   font-size: 16px;
   cursor: pointer;
-  padding: 2px 4px;
+  padding: 1px 4px;
   border-radius: 4px;
   line-height: 1;
 }
@@ -383,10 +483,10 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   background: var(--rose-50);
 }
 .arm-progress {
-  height: 5px;
+  height: 4px;
   background: var(--slate-200);
   border-radius: 4px;
-  margin-top: 8px;
+  margin-top: 6px;
   overflow: hidden;
 }
 .arm-progress-bar {
@@ -403,17 +503,17 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 .counter-box {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 .counter-btn {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border: 1px solid var(--slate-300);
   border-radius: 6px;
   background: #ffffff;
   color: var(--slate-700);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -426,27 +526,26 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   background: var(--primary-light);
 }
 .counter-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 .counter-val {
-  min-width: 18px;
+  min-width: 16px;
   text-align: center;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--slate-900);
 }
 
 /* Multiplicity Status Alert */
 .multi-status-box {
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 12px;
-  line-height: 1.5;
-  margin-top: 12px;
+  border-radius: 7px;
+  padding: 8px 10px;
+  font-size: 11.5px;
+  line-height: 1.45;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 6px;
 }
 .multi-status-neutral {
   background: var(--slate-100);
@@ -458,29 +557,24 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   border: 1px solid #bfdbfe;
   color: #1e40af;
 }
-.multi-status-box .status-icon {
-  font-size: 14px;
-  line-height: 1.2;
-}
 
 /* Custom Comparisons List */
 .comp-list {
-  max-height: 180px;
+  max-height: 140px;
   overflow-y: auto;
   border: 1px solid var(--slate-200);
-  border-radius: 8px;
-  padding: 8px 10px;
-  margin-top: 8px;
+  border-radius: 7px;
+  padding: 6px 8px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   background: #ffffff;
 }
 .comp-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12.5px;
+  font-size: 12px;
   cursor: pointer;
   user-select: none;
 }
@@ -489,108 +583,27 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   cursor: pointer;
 }
 
-/* Results Hero Card */
-.hero-card {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #1e3a8a 100%);
-  border-radius: 14px;
-  padding: 24px 26px;
-  color: #ffffff;
-  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.25);
-  border: none;
-}
-.hero-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-.hero-eyebrow {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #93c5fd;
-}
-.hero-badge {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.12);
-  color: #e2e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-.hero-main {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin: 10px 0 14px;
-}
-.hero-number {
-  font-size: 56px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-  color: #ffffff;
-}
-.hero-unit {
-  font-size: 18px;
-  font-weight: 600;
-  color: #cbd5e1;
-}
-.hero-subtext {
-  font-size: 12.5px;
-  color: #cbd5e1;
-  line-height: 1.6;
-  max-width: 600px;
-}
-.hero-stat-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-top: 20px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-}
-.hero-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.hero-stat-label {
-  font-size: 11px;
-  color: #94a3b8;
-  font-weight: 500;
-}
-.hero-stat-val {
-  font-size: 16px;
-  font-weight: 750;
-  color: #ffffff;
-  font-variant-numeric: tabular-nums;
-}
-
 /* Allocation Bars & List */
 .alloc-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 9px;
 }
 .alloc-item {
   display: grid;
-  grid-template-columns: 140px 1fr 100px;
+  grid-template-columns: 130px 1fr 90px;
   align-items: center;
-  gap: 14px;
-  padding: 10px 12px;
+  gap: 12px;
+  padding: 8px 10px;
   border: 1px solid var(--slate-100);
-  border-radius: 8px;
+  border-radius: 7px;
   background: var(--slate-50);
 }
 .alloc-item-title {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
+  gap: 6px;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--slate-800);
   overflow: hidden;
@@ -598,8 +611,8 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   white-space: nowrap;
 }
 .alloc-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--teal);
   flex-shrink: 0;
@@ -608,14 +621,14 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   background: var(--primary);
 }
 .alloc-bar-container {
-  height: 8px;
+  height: 7px;
   background: var(--slate-200);
-  border-radius: 6px;
+  border-radius: 5px;
   overflow: hidden;
 }
 .alloc-bar-fill {
   height: 100%;
-  border-radius: 6px;
+  border-radius: 5px;
   background: var(--teal);
   transition: width 0.3s;
 }
@@ -624,13 +637,13 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 }
 .alloc-item-num {
   text-align: right;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 750;
   color: var(--slate-900);
   font-variant-numeric: tabular-nums;
 }
 .alloc-sub {
-  font-size: 10.5px;
+  font-size: 10px;
   color: var(--slate-500);
   font-weight: 400;
 }
@@ -639,24 +652,24 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 .table-wrapper {
   overflow-x: auto;
   border: 1px solid var(--slate-200);
-  border-radius: 8px;
+  border-radius: 7px;
 }
 .styled-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 12.5px;
+  font-size: 12px;
   text-align: left;
 }
 .styled-table th {
   background: var(--slate-50);
-  padding: 9px 12px;
+  padding: 8px 10px;
   font-weight: 700;
   color: var(--slate-600);
   border-bottom: 1px solid var(--slate-200);
   white-space: nowrap;
 }
 .styled-table td {
-  padding: 10px 12px;
+  padding: 8px 10px;
   border-bottom: 1px solid var(--slate-100);
   color: var(--slate-800);
 }
@@ -668,28 +681,28 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   font-variant-numeric: tabular-nums;
 }
 
-/* Multiplicity Impact Comparison Box */
+/* Multiplicity Impact Box */
 .impact-box {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
   background: var(--slate-50);
   border: 1px solid var(--slate-200);
-  border-radius: 10px;
-  padding: 14px;
+  border-radius: 8px;
+  padding: 12px;
 }
 .impact-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 .impact-label {
-  font-size: 11.5px;
+  font-size: 11px;
   color: var(--slate-500);
   font-weight: 600;
 }
 .impact-val {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 800;
   color: var(--slate-800);
   font-variant-numeric: tabular-nums;
@@ -698,7 +711,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   color: var(--primary);
 }
 .impact-note {
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--slate-400);
 }
 
@@ -706,29 +719,29 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 .sensitivity-grid {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
 }
 .sens-row {
   display: grid;
-  grid-template-columns: 120px 1fr 90px;
+  grid-template-columns: 120px 1fr 80px;
   align-items: center;
-  gap: 12px;
-  font-size: 12px;
+  gap: 10px;
+  font-size: 11.5px;
 }
 .sens-label {
   font-weight: 600;
   color: var(--slate-700);
 }
 .sens-bar-track {
-  height: 8px;
+  height: 7px;
   background: var(--slate-100);
   border: 1px solid var(--slate-200);
-  border-radius: 6px;
+  border-radius: 5px;
   overflow: hidden;
 }
 .sens-bar-fill {
   height: 100%;
-  border-radius: 6px;
+  border-radius: 5px;
   background: var(--slate-400);
   transition: width 0.25s;
 }
@@ -742,48 +755,56 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   color: var(--slate-800);
 }
 
-/* Callout & Guide */
-.guide-accordion {
+/* Bottom Full-Width Guide Card */
+.bottom-guide {
+  background: #ffffff;
   border: 1px solid var(--slate-200);
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 14px;
+  padding: 18px 22px;
+  box-shadow: var(--card-shadow);
 }
 .guide-header {
-  padding: 12px 16px;
-  background: var(--slate-50);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-weight: 700;
-  font-size: 13px;
-  color: var(--slate-700);
+  font-size: 13.5px;
+  color: var(--slate-800);
+  user-select: none;
 }
-.guide-body {
-  padding: 16px;
+.guide-content {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--slate-100);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
   font-size: 12px;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--slate-600);
-  border-top: 1px solid var(--slate-200);
 }
-.guide-body ul {
-  padding-left: 18px;
+.guide-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
-.guide-body li strong {
+.guide-item-title {
+  font-weight: 700;
   color: var(--slate-800);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* Warning & Error alert */
+/* Alert */
 .alert {
-  padding: 12px 14px;
+  padding: 10px 14px;
   border-radius: 8px;
-  font-size: 12.5px;
-  line-height: 1.5;
+  font-size: 12px;
+  line-height: 1.45;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: flex-start;
 }
 .alert-amber {
@@ -799,36 +820,26 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 
 .hide { display: none !important; }
 
-/* Responsive */
+/* Responsive adjustments */
 @media (max-width: 1080px) {
-  .main-grid {
+  .hero-banner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .hero-left {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-right: 0;
+    padding-bottom: 16px;
+  }
+  .hero-right-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .symmetric-grid {
     grid-template-columns: 1fr;
   }
-}
-@media (max-width: 640px) {
-  .header-inner {
-    padding: 12px 16px;
-  }
-  .app-container {
-    padding: 0 14px;
-    margin-top: 16px;
-  }
-  .hero-number {
-    font-size: 42px;
-  }
-  .hero-stat-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .form-row {
+  .guide-content {
     grid-template-columns: 1fr;
-  }
-  .alloc-item {
-    grid-template-columns: 100px 1fr 80px;
-  }
-  .impact-box {
-    grid-template-columns: 1fr;
-    gap: 10px;
   }
 }
 </style>
@@ -863,25 +874,63 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 
 <main class="app-container">
   <!-- 错误提示横幅 -->
-  <div id="errorAlert" class="alert alert-rose hide" style="margin-bottom: 20px;">
+  <div id="errorAlert" class="alert alert-rose hide">
     <span>⚠️</span>
     <div id="errorText">输入参数有误，请核对。</div>
   </div>
 
-  <div class="main-grid">
-    <!-- 左侧：参数输入区（等高均衡卡片组） -->
-    <div class="param-column">
+  <!-- 置顶核心招募 KPI 横幅 (跨屏展示，一目了然) -->
+  <section class="hero-banner" id="heroBanner">
+    <div class="hero-left">
+      <div class="hero-eyebrow-row">
+        <span class="hero-eyebrow">Recommended Total Sample Size</span>
+        <span class="hero-badge" id="heroMethodBadge">正态近似 · 双侧差异</span>
+      </div>
+      <div class="hero-number-wrap">
+        <div class="hero-number" id="heroTotal">—</div>
+        <div class="hero-unit">人 (建议计划招募总数)</div>
+      </div>
+      <div class="hero-desc" id="heroSubtitle">
+        在 90% 检验效能、α* = 0.05 及预留 15% 失访脱落率下的全试验规划招募人数。
+      </div>
+    </div>
+    <div class="hero-right-stats">
+      <div class="hero-stat-card">
+        <span class="stat-k">有效评价总人数</span>
+        <span class="stat-v" id="heroEvalTotal">—</span>
+        <span class="stat-sub">主要终点可分析集</span>
+      </div>
+      <div class="hero-stat-card">
+        <span class="stat-k">正式比较项数</span>
+        <span class="stat-v" id="heroCompCount">—</span>
+        <span class="stat-sub">计入主要统计推断</span>
+      </div>
+      <div class="hero-stat-card">
+        <span class="stat-k">校正后单项水准 (α*)</span>
+        <span class="stat-v" id="heroAlphaLocal">—</span>
+        <span class="stat-sub">控制整体假阳性率</span>
+      </div>
+      <div class="hero-stat-card">
+        <span class="stat-k">失访缓冲人数</span>
+        <span class="stat-v" id="heroBuffer">—</span>
+        <span class="stat-sub" id="heroSiteAvg">每中心约 — 人</span>
+      </div>
+    </div>
+  </section>
 
-      <!-- 卡片 1: 试验设计与统计假设 -->
-      <section class="card">
-        <div class="card-head">
-          <div class="card-title-group">
-            <span class="card-icon">01</span>
-            <h2 class="card-title">试验设计与统计假设</h2>
-          </div>
-          <span class="card-tag">核心假设</span>
+  <!-- 左右对称平衡网格：每行两张卡片，等高对齐，两列底部完全对齐 -->
+  <div class="symmetric-grid">
+
+    <!-- Row 1: 左侧 01 统计假设  <===>  右侧 各组入组计划 -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <span class="card-icon">01</span>
+          <h2 class="card-title">试验设计与统计假设</h2>
         </div>
-
+        <span class="card-tag">设计框架</span>
+      </div>
+      <div class="card-body">
         <div class="form-row">
           <div class="form-group">
             <label class="control-label" for="hypothesis">检验类型</label>
@@ -898,20 +947,17 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
             </select>
           </div>
         </div>
-
-        <div class="form-row dense">
+        <div class="form-row">
           <div class="form-group">
             <label class="control-label" for="alpha">
               显著性水准 (α)
-              <span class="control-desc">假阳性率</span>
+              <span class="control-desc">假阳性率上限</span>
             </label>
-            <div class="input-with-unit">
-              <input id="alpha" type="number" min="0.001" max="0.20" step="0.005" value="0.05">
-            </div>
+            <input id="alpha" type="number" min="0.001" max="0.20" step="0.005" value="0.05">
           </div>
           <div class="form-group">
             <label class="control-label" for="power">
-              目标检验效能 (1-β)
+              目标检验效能 (1−β)
               <span class="control-desc">通常 80%~90%</span>
             </label>
             <div class="input-with-unit">
@@ -920,84 +966,150 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 卡片 2: 分组设置与预期事件率 -->
-      <section class="card">
-        <div class="card-head">
-          <div class="card-title-group">
-            <span class="card-icon">02</span>
-            <h2 class="card-title">研究分组与预期发作率</h2>
-          </div>
-          <div class="counter-box">
-            <button id="minusArm" class="counter-btn" type="button" title="减少一组">−</button>
-            <span id="armCountText" class="counter-val">2</span>
-            <button id="plusArm" class="counter-btn" type="button" title="增加一组">+</button>
-          </div>
+    <section class="card" id="cardAlloc">
+      <div class="card-head">
+        <div class="card-title-group">
+          <span class="card-icon">📊</span>
+          <h2 class="card-title">各研究组招募配额与计划</h2>
         </div>
+        <span class="card-tag" id="allocEvalTag">合计 — 人可评价</span>
+      </div>
+      <div class="card-body">
+        <div class="alloc-list" id="allocList"></div>
+      </div>
+    </section>
 
+    <!-- Row 2: 左侧 02 分组设置  <===>  右侧 正式疗效比较表 -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <span class="card-icon">02</span>
+          <h2 class="card-title">研究分组与预期发作率</h2>
+        </div>
+        <div class="counter-box">
+          <button id="minusArm" class="counter-btn" type="button" title="减少一组">−</button>
+          <span id="armCountText" class="counter-val">2</span>
+          <button id="plusArm" class="counter-btn" type="button" title="增加一组">+</button>
+        </div>
+      </div>
+      <div class="card-body">
         <div class="arms-container" id="armsList"></div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 卡片 3: 比较方案与多重性校正 -->
-      <section class="card">
-        <div class="card-head">
-          <div class="card-title-group">
-            <span class="card-icon">03</span>
-            <h2 class="card-title">主要比较与多重校正</h2>
-          </div>
-          <span class="card-tag card-tag-primary" id="compBadge">1 项正式比较</span>
+    <section class="card" id="cardComparison">
+      <div class="card-head">
+        <div class="card-title-group">
+          <span class="card-icon">📑</span>
+          <h2 class="card-title">主要疗效比较与统计效能</h2>
         </div>
-
-        <div class="form-group">
-          <label class="control-label" for="compareMode">正式推断范围</label>
-          <select id="compareMode">
-            <option value="first" selected>只检验第 1 个治疗组与对照组</option>
-            <option value="control">所有治疗组分别与对照组比较</option>
-            <option value="all">所有研究组之间两两比较</option>
-            <option value="custom">自定义勾选正式比较</option>
-          </select>
+        <span class="card-tag card-tag-primary" id="tableMetaTag">目标 90% 效能</span>
+      </div>
+      <div class="card-body">
+        <div class="table-wrapper">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>正式比较</th>
+                <th class="num-cell">风险差 (ARR)</th>
+                <th class="num-cell">相对危险度 (RR)</th>
+                <th class="num-cell">优势比 (OR)</th>
+                <th class="num-cell">达成效能</th>
+              </tr>
+            </thead>
+            <tbody id="compTableBody"></tbody>
+          </table>
         </div>
+      </div>
+    </section>
 
-        <!-- 自定义比较选择区 -->
-        <div id="customArea" class="hide" style="margin-top: 10px;">
-          <div class="comp-list" id="customCheckboxes"></div>
+    <!-- Row 3: 左侧 03 比较与多重校正  <===>  右侧 多重校正影响评估 -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <span class="card-icon">03</span>
+          <h2 class="card-title">主要比较与多重校正</h2>
         </div>
-
-        <div class="form-row dense">
+        <span class="card-tag card-tag-primary" id="compBadge">1 项正式比较</span>
+      </div>
+      <div class="card-body">
+        <div class="form-row">
           <div class="form-group">
-            <label class="control-label" for="correction">多重检验校正算法</label>
-            <select id="correction">
-              <option value="bonferroni" selected>Bonferroni 校正 (经典严谨)</option>
-              <option value="sidak">Šidák 校正 (精确独立)</option>
-              <option value="none">不校正 (仅限预先分级策略)</option>
+            <label class="control-label" for="compareMode">正式推断范围</label>
+            <select id="compareMode">
+              <option value="first" selected>只检验第 1 个治疗组与对照组</option>
+              <option value="control">所有治疗组分别与对照组比较</option>
+              <option value="all">所有研究组之间两两比较</option>
+              <option value="custom">自定义勾选正式比较</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="control-label">单项推断水平 (α*)</label>
-            <div class="input-with-unit">
-              <input id="localAlphaDisplay" type="text" readonly style="background: var(--slate-100); color: var(--slate-700);" value="0.05">
-            </div>
+            <label class="control-label" for="correction">多重校正算法</label>
+            <select id="correction">
+              <option value="bonferroni" selected>Bonferroni 校正 (经典严谨)</option>
+              <option value="sidak">Šidák 校正 (精确独立)</option>
+              <option value="none">不校正 (仅限分级策略)</option>
+            </select>
           </div>
         </div>
 
-        <!-- 智能多重性状态提示条 -->
+        <div id="customArea" class="hide">
+          <div class="comp-list" id="customCheckboxes"></div>
+        </div>
+
         <div id="multiStatusBox" class="multi-status-box multi-status-neutral">
-          <span class="status-icon">ℹ️</span>
+          <span>ℹ️</span>
           <span id="multiStatusText">当前仅有 1 项正式比较，显著性水平无需分割（α* = α）。</span>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 卡片 4: 受试者分配、脱水率与多中心 -->
-      <section class="card">
-        <div class="card-head">
-          <div class="card-title-group">
-            <span class="card-icon">04</span>
-            <h2 class="card-title">分配比、失访与多中心</h2>
-          </div>
-          <span class="card-tag">实施规划</span>
+    <section class="card" id="cardMultiImpact">
+      <div class="card-head">
+        <div class="card-title-group">
+          <span class="card-icon">🛡️</span>
+          <h2 class="card-title">多重检验校正影响评估</h2>
         </div>
+        <span class="card-tag" id="impactTag">效应评估</span>
+      </div>
+      <div class="card-body">
+        <div class="impact-box" id="impactBox">
+          <div class="impact-item">
+            <span class="impact-label">未校正基线总人数 (α)</span>
+            <span class="impact-val" id="uncorrectedVal">—</span>
+            <span class="impact-note">若不控制假阳性膨胀</span>
+          </div>
+          <div class="impact-item">
+            <span class="impact-label">当前方案总人数 (α*)</span>
+            <span class="impact-val highlight" id="correctedVal">—</span>
+            <span class="impact-note">严格控制 FWER ≤ 0.05</span>
+          </div>
+          <div class="impact-item">
+            <span class="impact-label">校正所需额外受试者</span>
+            <span class="impact-val" id="impactDeltaVal">—</span>
+            <span class="impact-note" id="impactDeltaNote">控制假阳性的成本</span>
+          </div>
+        </div>
+        <div class="alert alert-amber hide" id="multiWarningAlert" style="margin-top: 6px;">
+          <span>⚠️</span>
+          <div id="multiWarningText"></div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Row 4: 左侧 04 分配与失访  <===>  右侧 敏感性分析 -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <span class="card-icon">04</span>
+          <h2 class="card-title">分配比、失访与多中心</h2>
+        </div>
+        <span class="card-tag">实施规划</span>
+      </div>
+      <div class="card-body">
         <div class="form-row">
           <div class="form-group">
             <label class="control-label" for="ratio">对照组 : 治疗组比例</label>
@@ -1019,8 +1131,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
             </div>
           </div>
         </div>
-
-        <div class="form-row dense">
+        <div class="form-row">
           <div class="form-group">
             <label class="control-label" for="centers">计划分中心数量</label>
             <div class="input-with-unit">
@@ -1035,151 +1146,52 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-    </div>
-
-    <!-- 右侧：计算结果与决策看板 -->
-    <div class="result-column">
-
-      <!-- 核心结果看板（Hero Card） -->
-      <section class="card hero-card" id="heroCard">
-        <div class="hero-header">
-          <span class="hero-eyebrow">Recommended Total Sample Size</span>
-          <span class="hero-badge" id="heroMethodBadge">正态近似 · 双侧检验</span>
+    <section class="card" id="cardSensitivity">
+      <div class="card-head">
+        <div class="card-title-group">
+          <span class="card-icon">📈</span>
+          <h2 class="card-title">疗效假设波动敏感性分析</h2>
         </div>
-        <div class="hero-main">
-          <div class="hero-number" id="heroTotal">—</div>
-          <div class="hero-unit">人 (计划入组总数)</div>
-        </div>
-        <div class="hero-subtext" id="heroSubtitle">
-          在 90% 检验效能、双侧 α = 0.05 及预留 15% 失访率下的全试验建议招募人数。
-        </div>
-
-        <div class="hero-stat-grid">
-          <div class="hero-stat">
-            <span class="hero-stat-label">有效评价总人数</span>
-            <span class="hero-stat-val" id="heroEvalTotal">—</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-label">正式比较项数</span>
-            <span class="hero-stat-val" id="heroCompCount">—</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-label">校正后单项 α*</span>
-            <span class="hero-stat-val" id="heroAlphaLocal">—</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-label">失访缓冲人数</span>
-            <span class="hero-stat-val" id="heroBuffer">—</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- 卡片 B: 各组入组计划表 -->
-      <section class="card" id="cardAlloc">
-        <div class="card-head">
-          <div class="card-title-group">
-            <span class="card-icon">📊</span>
-            <h3 class="card-title">各研究组招募配额与计划</h3>
-          </div>
-          <span class="card-tag" id="allocEvalTag">合计 — 人可评价</span>
-        </div>
-        <div class="alloc-list" id="allocList"></div>
-      </section>
-
-      <!-- 卡片 C: 正式比较与效应量评估 -->
-      <section class="card" id="cardComparison">
-        <div class="card-head">
-          <div class="card-title-group">
-            <span class="card-icon">📑</span>
-            <h3 class="card-title">主要疗效比较与统计效能</h3>
-          </div>
-          <span class="card-tag card-tag-primary" id="tableMetaTag">目标 90% 效能</span>
-        </div>
-        <div class="table-wrapper">
-          <table class="styled-table">
-            <thead>
-              <tr>
-                <th>正式比较</th>
-                <th class="num-cell">预期风险差 (ARR)</th>
-                <th class="num-cell">相对危险度 (RR)</th>
-                <th class="num-cell">优势比 (OR)</th>
-                <th class="num-cell">达成效能 (Power)</th>
-              </tr>
-            </thead>
-            <tbody id="compTableBody"></tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- 卡片 D: 多重校正影响对比 -->
-      <section class="card" id="cardMultiImpact">
-        <div class="card-head">
-          <div class="card-title-group">
-            <span class="card-icon">🛡️</span>
-            <h3 class="card-title">多重检验校正影响评估</h3>
-          </div>
-          <span class="card-tag" id="impactTag">效应评估</span>
-        </div>
-        <div class="impact-box" id="impactBox">
-          <div class="impact-item">
-            <span class="impact-label">未校正基线总样本量 (α)</span>
-            <span class="impact-val" id="uncorrectedVal">—</span>
-            <span class="impact-note">若不控制假阳性膨胀</span>
-          </div>
-          <div class="impact-item">
-            <span class="impact-label">当前方案总样本量 (α*)</span>
-            <span class="impact-val highlight" id="correctedVal">—</span>
-            <span class="impact-note">严格控制 FWER ≤ 0.05</span>
-          </div>
-          <div class="impact-item">
-            <span class="impact-label">校正所需额外受试者</span>
-            <span class="impact-val" id="impactDeltaVal">—</span>
-            <span class="impact-note" id="impactDeltaNote">为合规控制假阳性的成本</span>
-          </div>
-        </div>
-        <div class="alert alert-amber hide" id="multiWarningAlert" style="margin-top: 12px;">
-          <span>⚠️</span>
-          <div id="multiWarningText"></div>
-        </div>
-      </section>
-
-      <!-- 卡片 E: 疗效假设敏感性分析 -->
-      <section class="card" id="cardSensitivity">
-        <div class="card-head">
-          <div class="card-title-group">
-            <span class="card-icon">📈</span>
-            <h3 class="card-title">疗效假设波动敏感性分析</h3>
-          </div>
-          <span class="card-tag">风险把控</span>
-        </div>
-        <div style="font-size: 12px; color: var(--slate-500); margin-bottom: 12px;">
-          假定实际风险差比预期减少或增加时，样本量所需的弹性缓冲区间：
+        <span class="card-tag">风险把控</span>
+      </div>
+      <div class="card-body">
+        <div style="font-size: 11.5px; color: var(--slate-500); margin-bottom: 2px;">
+          假定实际风险差比预期减少或增加时，全试验所需样本量的弹性缓冲区间：
         </div>
         <div class="sensitivity-grid" id="sensitivityGrid"></div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 卡片 F: 统计学规范与方法说明 -->
-      <section class="card">
-        <div class="guide-accordion">
-          <div class="guide-header" id="guideToggle">
-            <span>📖 临床试验样本量设计指南与 ICH-E9 规范说明</span>
-            <span id="guideArrow">▼</span>
-          </div>
-          <div class="guide-body" id="guideBody">
-            <ul>
-              <li><strong>样本量与真实效应：</strong>计算样本量基于“预设发作率成立”的假定，旨在保证试验拥有足够检验效能（$1-\beta$）。样本量再大也无法保证疗效不足的研究获得阳性结果。</li>
-              <li><strong>多重性假阳性膨胀：</strong>若包含多项主要终点或多组比较，试验家族假阳性率（FWER）会按 $1-(1-\alpha)^m$ 剧增。Bonferroni 或 Šidák 校正可将总体假阳性率严格锚定在预设的 $\alpha$ 以内。</li>
-              <li><strong>全分析集 (ITT) 与失访缓冲：</strong>根据 ICH E9 指南，失访比例仅用于放大入组计划量：$N_{\text{计划}} = \lceil N_{\text{可评价}} / (1 - \text{loss}) \rceil$。方案设计中应尽可能提高患者依从性，失访不能自动修正随访偏差。</li>
-              <li><strong>模型选择建议：</strong>当每组事件数较低（如发作人数小于 5）或两组比例极端接近 0 或 1 时，正态近似法会有轻微偏差，应选用 Fisher 确切概率法复核。</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-    </div>
   </div>
+
+  <!-- 底部通栏：权威统计学规范与 ICH-E9 说明 (整洁优雅收底) -->
+  <section class="bottom-guide">
+    <div class="guide-header" id="guideToggle">
+      <span>📖 临床试验样本量设计指南与 ICH-E9 规范说明</span>
+      <span id="guideArrow" style="color: var(--slate-400);">▼</span>
+    </div>
+    <div class="guide-content" id="guideBody">
+      <div class="guide-item">
+        <div class="guide-item-title">🔹 样本量与真实效应假定</div>
+        <div>计算样本量基于“预设发作率成立”的前提，旨在保证试验具备足够的统计检验效能 (1 − β)。样本量再大也无法保证疗效不足的研究获得阳性结果。</div>
+      </div>
+      <div class="guide-item">
+        <div class="guide-item-title">🔹 多重性假阳性膨胀控制</div>
+        <div>若包含多项主要终点或多组比较，试验家族假阳性率 (FWER) 会按 1 − (1 − α)^m 累积剧增。Bonferroni 或 Šidák 校正可将总体假阳性率严格控制在预设的 α 水平以内。</div>
+      </div>
+      <div class="guide-item">
+        <div class="guide-item-title">🔹 全分析集 (ITT) 与失访缓冲</div>
+        <div>根据 ICH E9 指南，预计失访率仅用于倒推计划入组量：N_计划 = ⌈可评价人数 / (1 − 失访率)⌉。方案中必须做好随访质量控制，失访缓冲不能消除失访偏倚。</div>
+      </div>
+      <div class="guide-item">
+        <div class="guide-item-title">🔹 统计检验模型适用性</div>
+        <div>当每组发作人数过少（如期望事件数小于 5 例）或两组发作率极端接近 0% 或 100% 时，正态近似法可能出现轻微偏差，正式注册方案建议采用 Fisher 精确检验复核。</div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <script>
@@ -1188,7 +1200,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 
   const el = id => document.getElementById(id);
 
-  // 预设情景
+  // 经典临床情景预设
   const presets = {
     moderate: {
       hypothesis: 'difference',
@@ -1324,7 +1336,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
     return Math.max(0, Math.min(1, twoSided ? p1 + p2 : p2));
   }
 
-  // Fisher's exact test unconditional power
+  // Fisher 精确检验非条件功效
   function fisherPower(n0, n1, p0, p1, alpha) {
     const N = n0 + n1;
     const lf = new Float64Array(N + 1);
@@ -1395,7 +1407,6 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
     return { base: lo, evaluable, powers: powers(lo) };
   }
 
-  // 格式化函数
   const fmt = (x, d = 1) => Number(x).toFixed(d);
   const num = x => Number(x).toLocaleString('zh-CN');
   const esc = s => String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
@@ -1430,7 +1441,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 
       const badge = document.createElement('span');
       badge.className = `arm-badge ${i === 0 ? 'control' : ''}`;
-      badge.textContent = i === 0 ? '参考对照组' : `第 ${i + 1} 组`;
+      badge.textContent = i === 0 ? '对照组' : `第 ${i + 1} 组`;
 
       const inpName = document.createElement('input');
       inpName.className = 'arm-name-input';
@@ -1537,14 +1548,12 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
     latest = null;
     el('errorText').textContent = msg;
     el('errorAlert').classList.remove('hide');
-    el('heroCard').classList.add('hide');
-    ['cardAlloc', 'cardComparison', 'cardMultiImpact', 'cardSensitivity'].forEach(id => el(id).classList.add('hide'));
+    el('heroBanner').classList.add('hide');
   }
 
   function hideError() {
     el('errorAlert').classList.add('hide');
-    el('heroCard').classList.remove('hide');
-    ['cardAlloc', 'cardComparison', 'cardMultiImpact', 'cardSensitivity'].forEach(id => el(id).classList.remove('hide'));
+    el('heroBanner').classList.remove('hide');
   }
 
   function calculate() {
@@ -1564,7 +1573,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
       return showError('检验效能需设定在 50% 至 99% 之间。');
     }
     if (!Number.isFinite(loss) || loss < 0 || loss >= 60) {
-      return showError('失访脱水率必须在 0% 至 60% 之间。');
+      return showError('失访脱落率必须在 0% 至 60% 之间。');
     }
     if (!Number.isFinite(centers) || centers < 1 || centers > 100) {
       return showError('中心数必须在 1 至 100 之间。');
@@ -1590,18 +1599,17 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
     }
 
     el('compBadge').textContent = `${m} 项正式比较`;
-    el('localAlphaDisplay').value = Number(localAlpha.toPrecision(4)).toString();
 
-    // 多重性状态提示条
+    // 智能多重性提示
     const statusBox = el('multiStatusBox');
     const statusText = el('multiStatusText');
     if (m === 1) {
       statusBox.className = 'multi-status-box multi-status-neutral';
-      statusText.innerHTML = `当前仅 <strong>1 项正式比较</strong>，无需进行多重性分割（α* = α = ${alpha}）。切换为多项比较时将自动计算校正。`;
+      statusText.innerHTML = `当前仅 <strong>1 项正式比较</strong>，无需进行多重性分割（α* = α = ${alpha}）。`;
     } else {
       statusBox.className = 'multi-status-box multi-status-active';
       if (correction === 'bonferroni') {
-        statusText.innerHTML = `已激活 <strong>Bonferroni 校正</strong>：共 ${m} 项比较，总体 α=${alpha} 分割为单项 <strong>α* = ${Number(localAlpha.toPrecision(4))}</strong>，严格控制家族假阳性率 (FWER ≤ ${alpha})。`;
+        statusText.innerHTML = `已激活 <strong>Bonferroni 校正</strong>：共 ${m} 项比较，单项 <strong>α* = ${Number(localAlpha.toPrecision(4))}</strong>，严格控制家族假阳性率 (FWER ≤ ${alpha})。`;
       } else if (correction === 'sidak') {
         statusText.innerHTML = `已激活 <strong>Šidák 校正</strong>：共 ${m} 项比较，单项 <strong>α* = ${Number(localAlpha.toPrecision(4))}</strong>。`;
       } else {
@@ -1615,7 +1623,6 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
         ? optimizeExact(arms, pairs, power / 100, localAlpha)
         : optimize(arms, pairs, power / 100, localAlpha, ratio, isTwoSided);
 
-      // 计算未校正基线（用于对比多重校正增加的人数）
       uncorrectedResult = (m > 1 && correction !== 'none')
         ? optimize(arms, pairs, power / 100, alpha, ratio, isTwoSided)
         : result;
@@ -1649,12 +1656,12 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
       state: { ...state }
     };
 
-    // 渲染 Hero Card 核心指标
+    // 渲染置顶横幅核心指标
     el('heroTotal').textContent = num(total);
     el('heroMethodBadge').textContent = method === 'fisher' ? '双侧 Fisher 精确检验' : (isTwoSided ? '正态近似 · 双侧差异' : '正态近似 · 单侧优效');
     el('heroSubtitle').textContent = (m > 1
-      ? `全试验人数主要由“${arms[limiting.j].name} vs ${arms[limiting.i].name}”（风险差 ${fmt(Math.abs(arms[limiting.j].rate - arms[limiting.i].rate))} pp）决定。`
-      : '') + `在 ${power}% 检验效能、α* = ${Number(localAlpha.toPrecision(4))} 及预留 ${loss}% 失访脱落率下的计划总入组人数。`;
+      ? `受“${arms[limiting.j].name} vs ${arms[limiting.i].name}”（风险差 ${fmt(Math.abs(arms[limiting.j].rate - arms[limiting.i].rate))} pp）限制。`
+      : '') + `在 ${power}% 检验效能、α* = ${Number(localAlpha.toPrecision(4))} 及预留 ${loss}% 失访率下的计划总入组人数。`;
 
     el('heroEvalTotal').textContent = `${num(evalTotal)} 人`;
     el('heroCompCount').textContent = `${m} 项`;
@@ -1663,6 +1670,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 
     const avgPerCenter = Math.ceil(total / centers);
     el('centerAvgDisplay').value = `约 ${num(avgPerCenter)} 人`;
+    el('heroSiteAvg').textContent = `共 ${centers} 中心 · 均约 ${num(avgPerCenter)} 人`;
 
     // 渲染各组分配列表
     el('allocEvalTag').textContent = `合计 ${num(evalTotal)} 人可评价 · 预留缓冲 ${num(total - evalTotal)} 人`;
@@ -1712,27 +1720,27 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
     if (m <= 1) {
       el('impactTag').textContent = '单项比较无需校正';
       el('impactDeltaVal').textContent = '0 人';
-      el('impactDeltaNote').textContent = '当前仅单项比较，无校正增量';
+      el('impactDeltaNote').textContent = '仅单项比较，无校正增量';
     } else if (correction === 'none') {
       el('impactTag').textContent = '未开启多重校正';
       el('impactDeltaVal').textContent = '0 人';
       el('impactDeltaNote').textContent = '未控制总体假阳性率';
     } else {
-      el('impactTag').textContent = `多重校正增量 +${delta} 人`;
+      el('impactTag').textContent = `校正增量 +${delta} 人`;
       el('impactDeltaVal').textContent = `+${num(delta)} 人 (${((delta / uncorrTotal) * 100).toFixed(1)}%)`;
-      el('impactDeltaNote').textContent = `为控制 ${m} 项比较的假阳性率额外需入组人数`;
+      el('impactDeltaNote').textContent = `为控制 ${m} 项比较假阳性额外入组`;
     }
 
     // 警告提示
     const warns = [];
     if (correction === 'none' && m > 1) {
-      warns.push(`已选择 ${m} 项正式比较但未进行多重校正，试验整体假阳性率（FWER）可能膨胀至 ${((1 - Math.pow(1 - alpha, m)) * 100).toFixed(1)}%，方案中需事先定义层级检验顺序。`);
+      warns.push(`已选择 ${m} 项正式比较但未进行多重校正，试验整体假阳性率可能膨胀至 ${((1 - Math.pow(1 - alpha, m)) * 100).toFixed(1)}%，方案中需预先定义层级检验策略。`);
     }
     if (pairs.some(({ i, j }) => i === 0 && arms[j].rate > arms[i].rate)) {
       warns.push('部分治疗组的预期发作率高于对照组：当前设定为双侧检验，统计学显著并不等同于能够证明治疗获益。');
     }
     if (arms.some((a, i) => result.evaluable[i] * (a.rate / 100) < 5 || result.evaluable[i] * (1 - a.rate / 100) < 5)) {
-      warns.push('至少有一组的预期发作或未发作事件数少于 5 例，正态近似法可能出现轻微偏差，正式注册方案建议采用 Fisher 精确检验或仿真模拟复核。');
+      warns.push('至少有一组的预期发作或未发作事件数少于 5 例，正态近似法可能出现轻微偏差，正式注册方案建议采用 Fisher 精确检验复核。');
     }
     const warnBox = el('multiWarningAlert');
     if (warns.length > 0) {
@@ -1742,47 +1750,41 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
       warnBox.classList.add('hide');
     }
 
-    // 渲染敏感性分析（针对双组 1:1）
-    const sensCard = el('cardSensitivity');
-    if (arms.length === 2 && m === 1 && method === 'z') {
-      sensCard.classList.remove('hide');
-      const p0 = arms[0].rate, p1 = arms[1].rate;
-      const diff = Math.abs(p1 - p0);
-      const sign = p1 >= p0 ? 1 : -1;
-      const scenarios = [
-        { label: '疗效减小 5 pp (保守)', diff: Math.max(0.5, diff - 5) },
-        { label: '疗效减小 3 pp', diff: Math.max(0.5, diff - 3) },
-        { label: '当前设定基线', diff: diff },
-        { label: '疗效增大 3 pp', diff: diff + 3 },
-        { label: '疗效增大 5 pp (乐观)', diff: diff + 5 }
-      ].map((s, k) => {
-        const newP = p0 + sign * s.diff;
-        if (!(newP > 0 && newP < 100)) return { ...s, N: null };
-        const testArms = [{ ...arms[0] }, { ...arms[1], rate: newP }];
-        try {
-          const res = optimize(testArms, pairs, power / 100, localAlpha, ratio, isTwoSided);
-          const nTot = res.evaluable.reduce((sum, v) => sum + Math.ceil(v / (1 - loss / 100)), 0);
-          return { ...s, N: nTot };
-        } catch (e) {
-          return { ...s, N: null };
-        }
-      });
+    // 渲染敏感性分析
+    const p0 = arms[0].rate, p1 = arms[1].rate;
+    const diff = Math.abs(p1 - p0);
+    const sign = p1 >= p0 ? 1 : -1;
+    const scenarios = [
+      { label: '疗效减小 5 pp', diff: Math.max(0.5, diff - 5) },
+      { label: '疗效减小 3 pp', diff: Math.max(0.5, diff - 3) },
+      { label: '当前设定基线', diff: diff },
+      { label: '疗效增大 3 pp', diff: diff + 3 },
+      { label: '疗效增大 5 pp', diff: diff + 5 }
+    ].map((s, k) => {
+      const newP = p0 + sign * s.diff;
+      if (!(newP > 0 && newP < 100)) return { ...s, N: null };
+      const testArms = [{ ...arms[0] }, { ...arms[1], rate: newP }];
+      try {
+        const res = optimize(testArms, pairs.slice(0, 1), power / 100, localAlpha, ratio, isTwoSided);
+        const nTot = res.evaluable.reduce((sum, v) => sum + Math.ceil(v / (1 - loss / 100)), 0);
+        return { ...s, N: nTot };
+      } catch (e) {
+        return { ...s, N: null };
+      }
+    });
 
-      const validNs = scenarios.filter(x => x.N !== null).map(x => x.N);
-      const maxN = Math.max(...validNs);
+    const validNs = scenarios.filter(x => x.N !== null).map(x => x.N);
+    const maxN = Math.max(...validNs);
 
-      el('sensitivityGrid').innerHTML = scenarios.map((s, idx) => `
-        <div class="sens-row ${idx === 2 ? 'current' : ''}">
-          <span class="sens-label">${esc(s.label)}</span>
-          <div class="sens-bar-track">
-            <div class="sens-bar-fill" style="width: ${s.N ? ((s.N / maxN) * 100).toFixed(1) : 0}%;"></div>
-          </div>
-          <span class="sens-num">${s.N ? num(s.N) + ' 人' : '超出范围'}</span>
+    el('sensitivityGrid').innerHTML = scenarios.map((s, idx) => `
+      <div class="sens-row ${idx === 2 ? 'current' : ''}">
+        <span class="sens-label">${esc(s.label)}</span>
+        <div class="sens-bar-track">
+          <div class="sens-bar-fill" style="width: ${s.N ? ((s.N / maxN) * 100).toFixed(1) : 0}%;"></div>
         </div>
-      `).join('');
-    } else {
-      sensCard.classList.add('hide');
-    }
+        <span class="sens-num">${s.N ? num(s.N) + ' 人' : '超出范围'}</span>
+      </div>
+    `).join('');
   }
 
   // 导出 CSV
@@ -1902,11 +1904,11 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
     });
   });
 
-  // 折叠指南
+  // 底部折叠指南
   let guideOpen = true;
   el('guideToggle').addEventListener('click', () => {
     guideOpen = !guideOpen;
-    el('guideBody').style.display = guideOpen ? 'block' : 'none';
+    el('guideBody').style.display = guideOpen ? 'grid' : 'none';
     el('guideArrow').textContent = guideOpen ? '▼' : '▶';
   });
 
